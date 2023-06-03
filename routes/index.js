@@ -15,6 +15,6 @@ router.get('/libro/:id', controller.bookDetail);
 router.get("/librosCategoria", controller.booksCategory);
 router.get("/categorias", controller.categories);
 router.get("/autores", controller.authors);
-//router.post('/view',tokenMiddleware, controller.view);
+router.post("/nuevoLibro", controller.createBook);
 
 module.exports = router;

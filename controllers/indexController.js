@@ -79,12 +79,16 @@ module.exports = {
 	},
 	createBook: async (req, res) => {
 		try {
-			/*let newBook = {
-				titulo,
-				descripcion,
-				AutorId ,
-				CategoriaId,
-			}*/
+			let newBook = {
+				titulo: req.body.title,
+				descripcion: req.body.description,
+				AutorId: parseInt(req.body.author),
+				CategoriaId: parseInt(req.body.category),
+			}
+			db.Libro.create({
+				...newBook
+			})
+			res.json(newBook);
 		} catch (error) {
 			console.log(error);
 		}

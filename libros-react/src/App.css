@@ -1,0 +1,19 @@
+.navbar {
+	background-color: darkslategray;
+	display: flex;
+    justify-content: space-around;
+	flex-direction: row;
+}
+
+.button {
+	margin: 0.5rem;
+	padding: 1rem;
+	background-color: cadetblue;
+}
+
+.App-header{
+    height: 6rem;
+    background-color: brown;
+    text-align: center;
+    font-size: 3rem;
+}

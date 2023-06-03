@@ -45,17 +45,23 @@ module.exports = {
 				include: [{ model: db.Categoria }, { model: db.Autor }],
 				where: { id: req.params.id },
 			});
-			let returnBook = {
-				id: book.id,
-				titulo: book.titulo,
-				descripcion: book.descripcion,
-				categoria: book.Categorium.nombre,
-				autor: book.Autor.nombre,
-				nacimiento: book.Autor.fec_nac,
-				nacionalidad: book.Autor.nacionalidad,
-				biografia: book.Autor.bio,
-			};
-			res.json(returnBook);
+			if (book) {
+				let returnBook = {
+					id: book.id,
+					titulo: book.titulo,
+					descripcion: book.descripcion,
+					categoria: book.Categorium.nombre,
+					autor: book.Autor.nombre,
+					nacimiento: book.Autor.fec_nac,
+					nacionalidad: book.Autor.nacionalidad,
+					biografia: book.Autor.bio,
+				};
+				res.json(returnBook);
+			} else {
+				res.status(400);
+				res.json(null);
+			}
+			
 		} catch (error) {
 			console.log(error);
 		}
@@ -84,10 +90,10 @@ module.exports = {
 				descripcion: req.body.description,
 				AutorId: parseInt(req.body.author),
 				CategoriaId: parseInt(req.body.category),
-			}
+			};
 			db.Libro.create({
-				...newBook
-			})
+				...newBook,
+			});
 			res.json(newBook);
 		} catch (error) {
 			console.log(error);

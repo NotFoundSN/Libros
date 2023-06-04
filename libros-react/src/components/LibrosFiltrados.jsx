@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function Libros() {
+function LibrosFiltrados() {
 	const [libros, setLibros] = useState([]);
-
+	let { titulo } = useParams();
 	useEffect(() => {
-		fetch("http://127.0.0.1:4000/api/libros").then((respuesta) => {
+		fetch("http://127.0.0.1:4000/api/buscarLibros", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				title: titulo,
+			}),
+		}).then((respuesta) => {
 			respuesta.json().then((resultado) => {
 				setLibros(resultado);
 			});
 		});
-	}, []);
-
+	}, [titulo]);
 	return (
 		<>
 			<div className="card-holder">
@@ -25,7 +32,9 @@ function Libros() {
 							>
 								<div>
 									<div className="cardTitle">Libro:</div>
-									<div className="cardVar">{libro.titulo}</div>
+									<div className="cardVar">
+										{libro.titulo}
+									</div>
 								</div>
 								<div>
 									<div className="cardTitle">Autor:</div>
@@ -33,7 +42,9 @@ function Libros() {
 								</div>
 								<div>
 									<div className="cardTitle">Categoria:</div>
-									<div className="cardVar">{libro.categoria}</div>
+									<div className="cardVar">
+										{libro.categoria}
+									</div>
 								</div>
 							</Link>
 						);
@@ -43,4 +54,4 @@ function Libros() {
 	);
 }
 
-export default Libros;
+export default LibrosFiltrados;

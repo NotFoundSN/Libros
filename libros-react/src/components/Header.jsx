@@ -1,7 +1,7 @@
 function Header() {
 	return (
 		<>
-			<header className="App-header">header prueba</header>
+			<header className="App-header"></header>
 		</>
 	);
 }

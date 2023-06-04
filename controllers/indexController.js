@@ -61,7 +61,6 @@ module.exports = {
 				res.status(400);
 				res.json(null);
 			}
-			
 		} catch (error) {
 			console.log(error);
 		}
@@ -85,6 +84,7 @@ module.exports = {
 	},
 	createBook: async (req, res) => {
 		try {
+			console.log(req.body);
 			let newBook = {
 				titulo: req.body.title,
 				descripcion: req.body.description,

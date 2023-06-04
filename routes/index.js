@@ -10,7 +10,7 @@ const controller = require('../controllers/indexController');
 
 //rutas
 router.get('/libros', controller.books);
-router.get('/buscarLibros', controller.searchBook);
+router.post('/buscarLibros', controller.searchBook);
 router.get('/libro/:id', controller.bookDetail);
 router.get("/librosCategoria", controller.booksCategory);
 router.get("/categorias", controller.categories);
